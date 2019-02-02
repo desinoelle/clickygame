@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import Wrapper from "./components/Wrapper";
 import Nav from "./components/Nav.js";
 import Cat from "./components/Cat.js"
-import kittens from "./kittens.json";
+import Kittens from "./kittens.json";
+
+let topScore = 0;
+let currentScore = 0;
+let message = "Click on an image to begin!";
 
 // Function for shuffling our kittens array
 function shuffleArray(array) {
@@ -19,31 +23,71 @@ function shuffleArray(array) {
 class App extends Component {
   // Setting this.state.kittens equal to json
   state = {
-    kittens
+    Kittens,
+    topScore,
+    currentScore,
+    message
   };
 
-  picClick = id => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    const kittens= this.state.kittens.filter(kitten => kitten.id !== id);
-    // Set this.state.friends equal to the new friends array
-    this.setState({ kittens });
+  setClicked = id => {
+    // Filter kittens
+    let Kitten = this.state.Kittens.filter(Kitten => Kitten.id !== id);
+    
+    // Conditionals for determining click
+    if (Kitten.clicked === true) {
+      currentScore = 0;
+      message = "Oops! You Lost! Starting over...";
+
+      for (let i = 0; i < Kittens.length; i++) {
+        Kittens[i].clicked = false;
+      }
+
+      this.setState({Kittens});
+      this.setState({currentScore});
+      this.setState({message});
+
+    }
+    else {
+      Kitten.clicked = true;
+
+      currentScore = currentScore + 1;
+      message = "Correct!";
+
+      // Change top score if needed
+      if (currentScore > topScore) {
+        topScore = currentScore;
+        this.setState({topScore});
+      }
+
+      // Shuffle kittens
+      shuffleArray(Kittens);
+
+      this.setState({Kittens});
+      this.setState({currentScore});
+      this.setState({message});
+    }
   };
 
   render() {
-    // Shuffle kittens
-    let shuffledKittens = shuffleArray(this.state.kittens);
     return (
       <div>
-      <Nav />
+      <Nav 
+        message={this.state.message}
+        topScore={this.state.topScore}
+        currentScore={this.state.currentScore}
+      />
       <Wrapper>
-        {shuffledKittens.map(kitten => (
-          <Cat
-            picClick={this.picClick}
-            id={kitten.id}
-            src={kitten.src}
-            clicked={kitten.clicked}
-          />
-        ))}
+        <div className="row">
+          {this.state.Kittens.map(kitten => (
+            <Cat
+              setClicked={this.setClicked}
+              id={kitten.id}
+              src={kitten.src}
+              clicked={kitten.clicked}
+              className="col-sm-1"
+            />
+          ))}
+        </div>
       </Wrapper>
       </div>
       

@@ -6,8 +6,8 @@ function Cat(props) {
           <img alt={props.id} 
             src={props.src} 
             clicked={props.clicked}
-            class="img-thumbnail"
-            onClick={() => props.picClick(props.id)}/>
+            className="img-thumbnail"
+            onClick={() => props.setClicked(props.id)}/>
       </div>
     );
 }

@@ -1,19 +1,18 @@
 import React from "react";
 
-function Nav() {
+function Nav(props) {
     return (
         <div className="jumbotron jumbotron-fluid">
             <div className="container">
                 <h1 className="display-4">Kitty Cat Clicky Game!</h1>
-                <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
                 <div className="container">
                     <div className="row">
                         <div className="col">
-                            <p className="instructions">Click on an image to begin!</p>
+                            <p className="message">{props.message}</p>
                         </div>
                         <div className="col">
-                            <p className="score">Score: </p>
-                            <p className="top-score">Top Score: </p>
+                            <p className="score">Score: {props.currentScore}</p>
+                            <p className="top-score">Top Score: {props.topScore}</p>
                         </div>
                     </div>
                 </div>
