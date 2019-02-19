@@ -3,9 +3,9 @@ import "./index.css";
 
 function Cat(props) {
     return(
-        <div id={props.id} className="img-container">
+        <span onClick={() => props.setClicked(props.id)} className="img-container">
           <img alt="Cat" src={props.src} />
-        </div>
+        </span>
     );
 }
 
