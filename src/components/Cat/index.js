@@ -3,8 +3,8 @@ import "./index.css";
 
 function Cat(props) {
     return(
-        <span onClick={() => props.setClicked(props.id)} className="img-container">
-          <img alt="Cat" src={props.src} />
+        <span onClick={() => props.setClicked(props.id)} className="float-left m-4">
+          <img alt="Cat" src={props.src} className="rounded" />
         </span>
     );
 }

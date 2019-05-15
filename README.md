@@ -1,4 +1,5 @@
 # Kitty Cat Clicky Game
+https://desinoelle.github.io/clickygame/
 
 # Created and maintained by Desiree Howell
 *You must install npm packages for this to work*

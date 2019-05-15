@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Wrapper from "./components/Wrapper";
 import Nav from "./components/Nav";
 import Cat from "./components/Cat";
 import Kittens from "./kittens.json";
@@ -75,16 +74,17 @@ class App extends Component {
         topScore={this.state.topScore}
         currentScore={this.state.currentScore}
       />
-      <Wrapper>
-          {this.state.Kittens.map(kitten => (
+      <div className="container clearfix">
+        {this.state.Kittens.map(kitten => (
             <Cat
             key={kitten.id}
               setClicked={this.setClicked}
               id={kitten.id}
               src={kitten.src}
             />
-          ))}
-      </Wrapper>
+        ))}
+      </div>
+          
       </div>
     );
   }
